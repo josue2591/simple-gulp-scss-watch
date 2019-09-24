@@ -1,9 +1,7 @@
 /**
  * @file
- * Theme tasks.
+ * Gulp tasks.
  */
-/* eslint-env node */
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 
 const gulp = require('gulp');
 const sass = require('gulp-sass');
@@ -17,10 +15,10 @@ function style() {
   //1. where is my scss file
   return gulp.src('./scss/**/*.scss')
   //2. pass throught the sass compiler
-  .pipe(sass())
+  .pipe(sass().on('error', sass.logError))
   // 3. where do i save the compiled
   .pipe(gulp.dest('./css'))
-  // browser sync
+  // 4. browser sync.
   .pipe(browserSync.stream());
 }
 
